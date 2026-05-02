@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика – SecureCorp</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        table { width:100%; border-collapse:collapse; margin-top:1rem; }
+        th, td { border:1px solid #ddd; padding:8px; text-align:left; }
+        th { background:#2c3e50; color:white; }
+        .stats { display:flex; gap:1rem; margin:1rem 0; }
+        .card { background:white; padding:1rem; border-radius:8px; flex:1; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<header><nav><div class="logo"><h1>SecureCorp Admin</h1></div><ul><li><a href="/">Главная</a></li></ul></nav></header>
+<main style="padding:2rem">
+    <h1>📊 Статистика фишинг-симулятора</h1>
+    <div class="stats">
+        <div class="card"><h3>👥 Пользователей</h3><div class="stat-number">{{ total_users }}</div></div>
+        <div class="card"><h3>📇 Профилей</h3><div class="stat-number">{{ total_profiles }}</div></div>
+        <div class="card"><h3>📧 Контактов</h3><div class="stat-number">{{ total_contacts }}</div></div>
+    </div>
+    <h2>Последние регистрации</h2>
+    <table>
+        <thead><tr><th>ID</th><th>Дата</th><th>Имя</th><th>Фамилия</th><th>Email</th><th>IP</th></tr></thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.user_id }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.ip_address }}</td>
+        </tr>
+  {% endfor %}
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

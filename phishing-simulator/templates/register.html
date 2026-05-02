@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация – SecureCorp</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="register-container">
+    <h2>Регистрация в корпоративной системе</h2>
+    {% if validation_error %}
+    <div class="tip-card" style="border-left-color:#e74c3c; background:#fdecea;">
+        {{ validation_error }}
+    </div>
+    {% endif %}
+    <form method="post">
+        <input type="hidden" name="campaign_id" value="{{ campaign_id }}">
+        <div class="form-group">
+            <label>ФИО полностью *</label>
+            <input type="text" name="first_name" placeholder="Иван" required>
+            <input type="text" name="last_name" placeholder="Иванов" required style="margin-top:0.5rem;">
+            <input type="text" name="middle_name" placeholder="Иванович" style="margin-top:0.5rem;">
+        </div>
+        <div class="form-group">
+            <label>Корпоративная почта *</label>
+            <input type="email" name="email" placeholder="ivan.ivanov@company.com" required>
+            <!-- Лишнее поле для отвлечения -->
+            <input type="email" name="confirm_email" placeholder="Подтвердите почту" style="margin-top:0.5rem;">
+        </div>
+        <div class="form-group">
+            <label>Телефон (верификация)</label>
+            <input type="tel" name="phone" placeholder="+7 (XXX) XXX-XX-XX">
+        </div>
+        <div class="form-group consent">
+            <input type="checkbox" id="consent" required>
+            <label for="consent">Я соглашаюсь с <a href="#">политикой конфиденциальности</a></label>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%">Завершить регистрацию</button>
+    </form>
+    <div class="security-notice">
+        <p>🔒 256‑bit SSL шифрование</p>
+	<span class="ssl-badge">SSL Secured</span>
+    </div>
+</div>
+</body>
+</html>

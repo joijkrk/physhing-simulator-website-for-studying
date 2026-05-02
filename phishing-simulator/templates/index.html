@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureCorp – Корпоративный портал</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo"><h1>SecrueCorp</h1></div>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/register" class="btn-primary">Регистрация</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section class="hero">
+        <h2>Добро пожаловать в SecureCorp</h2>
+        <p>Ваш надёжный партнёр в кибербезопасности</p>
+        <a href="/register?campaign=urgent" class="btn-large">Получить доступ</a>
+    </section>
+    <section class="features">
+        <div class="feature-card"><h3>Защита данных</h3><p>Полная конфиденциальность</p><a href="/register">Узнать →</a></div>
+        <div class="feature-card"><h3>Кибербезопасность</h3><p>Комплексные решения</p><a href="/register">Узнать →</a></div>
+    </section>
+    <section class="features" style="margin-top:0;">
+        {% for template_id, template_data in templates_library.items() %}
+        <div class="feature-card">
+            <h3>{{ template_data.title }}</h3>
+            <p>{{ template_data.description }}</p>
+            {% if template_data.endpoint == 'index' %}
+            <a href="/register?campaign={{ template_id }}">Использовать в кампании →</a>
+            {% else %}
+            <a href="{{ url_for(template_data.endpoint) }}">Открыть шаблон →</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    <section class="urgent-notice">
+        <h3>⚠️ Срочное обновление системы безопасности!</h3>
+        <p>Все сотрудники должны пройти повторную регистрацию до конца недели</p>
+        <a href="/register" class="btn-large">Регистрация сейчас</a>
+    </section>
+</main>
+</body>
+</html>

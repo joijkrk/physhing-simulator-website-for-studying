@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обучение – SecureCorp</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<main class="educational-content">
+    <div class="warning-header">
+        <h1>🚨 Учебная тревога! Вы стали целью фишинговой атаки</h1>
+        <p>Это учебная симуляция в рамках курса по информационной безопасности</p>
+    </div>
+    {% if is_mobile %}
+    <div class="tip-card" style="background:#e8f4fd;">
+        <h3>📱 Особенности мобильного фишинга</h3>
+        <ul><li>Мелкий экран – сложнее разглядеть подделку</li><li>Автоподстановка паролей опасна</li><li>Привычка быстро кликать</li></ul>
+    </div>
+    {% endif %}
+    <h2>🔍 Признаки фишинга на этой странице</h2>
+    <div class="red-flags">
+        <div class="tip-card">❌ Опечатка в названии – «SecrueCorp»</div>
+        <div class="tip-card">❌ Сторонний домен – secure‑corp‑analytics.com</div>
+        <div class="tip-card">❌ Давление – «срочно», «до конца недели»</div>
+    </div>
+    <h2>🛡️ Как защититься</h2>
+    <div class="tip-card">✅ Проверяйте URL в адресной строке</div>
+    <div class="tip-card">✅ Не переходите по подозрительным ссылкам</div>
+    <div class="tip-card">✅ Включите двухфакторную аутентификацию</div>
+    <h2>📝 Мини-тест после симуляции</h2>
+    <form id="quizForm" class="quiz-form">
+        {% for item in quiz_questions %}
+        <div class="tip-card">
+            <p><strong>{{ item.question }}</strong></p>
+            {% for option in item.options %}
+            <label class="quiz-option">
+                <input type="radio" name="answer_{{ item.id }}" value="{{ loop.index0 }}" required>
+                {{ option }}
+            </label>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn-primary">Проверить знания</button>
+    </form>
+    <div id="quizResult" class="tip-card" style="display:none;"></div>
+    <div style="text-align:center; margin-top:2rem">
+        <a href="/" class="btn-primary">На главную</a>
+        <a href="/admin/stats" class="btn-secondary" style="margin-left:1rem">Статистика</a>
+    </div>
+</main>
+<script src="/static/js/quiz.js" defer></script>
+</body>
+</html>
